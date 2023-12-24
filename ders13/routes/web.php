@@ -49,6 +49,13 @@ Route::get('/', function () {
     $users = DB::table('users')->avg('point'); //tabloda point degerlerinin ortalamasını döner.
     $users = DB::table('users')->sum('point'); //tabloda point degerlerinin toplamını döner.
     
+
+    // Row Expression işlemleri
+
+    $users = DB::table('users')->select(DB::raw('count(*) as user_count, status'))
+    ->where('status','=', 1)
+    ->groupBy('status')
+    ->get();
     
     return $users;
 });
