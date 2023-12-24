@@ -42,4 +42,29 @@ class CustomerController extends Controller
         $customer->price()->save($price);
         return "Price eklendi.";
     }
+    public function updateCustomer(){
+        $id = 1;
+        $title = 'yeni başlık';
+        $description = 'yeni acıklama';
+
+        Order::where('id', $id)->update([
+            'title' => $title,
+            'description' => $description
+        ]);
+
+        return "Order güncellendi.";
+    }
+
+    public function read(){
+        $customer_id = 10;
+
+        $customer = Customer::findOrFail($customer_id);
+        return $customer->order->title;
+    }
+
+    public function delete(){
+        $customer_id = 3;
+        Order::where('id', $customer_id)->delete();
+        return "Order silindi.";
+    }
 }

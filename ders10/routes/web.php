@@ -20,3 +20,8 @@ Route::get('/', function () {
 
 Route::get('/createOrder', [CustomerController::class, 'createOrder']);
 Route::get('/createPrice', [CustomerController::class, 'createPrice']);
+
+Route::get('/updateCustomer', [CustomerController::class, 'updateCustomer']);
+
+Route::get('/read', [CustomerController::class, 'read']);
+Route::get('/delete', [CustomerController::class, 'delete']);
