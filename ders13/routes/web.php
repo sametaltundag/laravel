@@ -39,5 +39,16 @@ Route::get('/', function () {
     $id = 1;
     $users = DB::table('users')->find($id);
 
+
+    // Aggregate işlemleri
+    
+    $users = DB::table('users')->count(); // tablodaki veri sayısını döner.
+
+    $users = DB::table('users')->max('point'); //tabloda en büyük point degerine sahip veriyi döner.
+    $users = DB::table('users')->min('point'); //tabloda en kuçük point degerine sahip veriyi döner.
+    $users = DB::table('users')->avg('point'); //tabloda point degerlerinin ortalamasını döner.
+    $users = DB::table('users')->sum('point'); //tabloda point degerlerinin toplamını döner.
+    
+    
     return $users;
 });
