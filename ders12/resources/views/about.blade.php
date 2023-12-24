@@ -22,14 +22,13 @@
             <div class="row">
               <div class="col-md-6 align-self-center">
                 <div class="right-content">
-                  <h2>Get to know about</h2>
-                  <p>Fusce nec ultrices lectus. Duis nec scelerisque risus. Ut id tempor turpis, ac dignissim ipsum. Nulla ullamcorper, ipsum vel condimentum congue, mi odio vehicula tellus, sit amet malesuada justo sem. 
-                  <br><br>Pellentesque in sagittis lacus, vel auctor sem. Quisque eu quam eleifend, ullamcorper dui nec, luctus quam.</p>
+                  <h2>{{$about->title}}</h2>
+                  <p>{{$about->description}}</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="left-image">
-                  <img src="{{asset('front/assets/images/about-image.jpg')}}" alt="hakkımızdalogo">
+                  <img src="{{asset('front/assets/images/'.$about->image)}}" alt="hakkımızdalogo">
                 </div>
               </div>
             </div>

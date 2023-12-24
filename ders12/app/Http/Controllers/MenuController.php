@@ -6,22 +6,29 @@ use Illuminate\Http\Request;
 use App\Models\Settings;
 use App\Models\About;
 use App\Models\Services;
+use App\Models\Slider;
 
 class MenuController extends Controller
 {
     public function home(){
-       return view('home');
+        $sliders = Slider::query()->get();
+        $services = Services::query()->get();
+        $about = About::query()->first();
+       return view('home' , compact('sliders','services','about'));
     }
 
     public function about(){
-        return view('about');
+        $about = About::query()->first();
+        return view('about', compact('about'));
     }
 
     public function services(){
-        return view('services');
+        $services = Services::query()->get();
+        return view('services', compact('services'));
     }
 
     public function contact(){
-        return view('contact');
+        $settings = Settings::query()->first();
+        return view('contact', compact('settings'));
     }
 }

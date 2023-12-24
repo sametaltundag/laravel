@@ -3,8 +3,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
-            <h2>İLetişim <em>Formu</em></h2>
-            <span>Etiam suscipit ante a odio consequat</span>
+            <h2>İletişim <em>Formu</em></h2>
           </div>
         </div>
         <div class="col-md-12">
