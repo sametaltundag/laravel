@@ -56,6 +56,24 @@ Route::get('/', function () {
     ->where('status','=', 1)
     ->groupBy('status')
     ->get();
+
+    // Order By (sıralama)
+    $users = DB::table('users')->orderBy('point', 'desc')->get();
+    $users = DB::table('users')->orderBy('point', 'asc')->get();
+
+
+    $users = DB::table('users')->latest()->first(); // son tarihli veriyi getirir
+    $users = DB::table('users')->oldest()->first(); // ilk tarihli veriyi getirir
+    $users = DB::table('users')->inRandomOrder()->get(); // rastgele veriyi getirir
+
+    // Limit ve Offset
+    $users = DB::table('users')->limit(5)->get(); // sadece 5 veriyi getirir
+    $users = DB::table('users')->skip('5')->take('5')->get(); // 5 veriden sonraki 5 veriyi getirir
+
+    $users = DB::table('users')->offset('5')->limit('5')->get(); // 5 veriden sonraki 5 veriyi getirir
+
+
+
     
     return $users;
 });
