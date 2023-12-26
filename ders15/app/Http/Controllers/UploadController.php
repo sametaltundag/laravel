@@ -36,5 +36,25 @@ class UploadController extends Controller
         }
     }
 
+    public function multiFileUpload(Request $request){
+        
+        if($request->hasFile('images')){
+            foreach($request->file('images') as $file){
+                // dosyanın adını belirliyoruz
+                $fileName = uniqid().'.'.$file->getClientOriginalName();
+                // resim yolunu belirtiyoruz
+                $imagePath = 'images/';
+                // dosya kaydetme işlemi
+                $file->move(public_path($imagePath), $fileName);
+                // veritabanına kaydetme işlemi
+                Images::create([
+                    'image_name' => $fileName,
+                    'image_path' => $imagePath
+                ]);
+            }
+            return 'files are saved';
+        }
+    }
+
     
 }
