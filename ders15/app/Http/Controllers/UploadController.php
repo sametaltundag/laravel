@@ -56,5 +56,28 @@ class UploadController extends Controller
         }
     }
 
-    
+    public function cropFileUpload(Request $request){
+        // dosya kontrolü
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $fileName = $image->getClientOriginalName();
+            $imagePath = 'images/';
+            $width = $request->width;
+            $height = $request->height;
+            // dosya kaydetme işlemi
+            $image->move(public_path($imagePath), $fileName);
+            // dosya kırpma işlemi
+            $cropImage = Image::make(public_path('images/'. $fileName))->fit($width,$height);
+            $cropImageName = 'crop_'.$fileName;
+            $cropImage->save(public_path($imagePath.$cropImageName));
+            
+            Images::query()->create([
+                'image_name' => $fileName,
+                'image_path' => $imagePath
+            ]);
+            
+            return "Resim kırpılarak yüklendi.";
+        }
+
+    }
 }
