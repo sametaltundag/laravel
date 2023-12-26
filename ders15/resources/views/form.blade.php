@@ -20,7 +20,8 @@
                     <li class="list-group-item" aria-current="true">Single Upload</li>
                     <form method="POST" action="{{ route('single-upload') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" name="image" class="form-control">
+                        <input type="file" name="image" class="form-control" id="image-preview" onchange="previewImage()">
+                        <img src="" id="img-preview" style="width: 100px;height: 100px;display: none;object-fit: contain;object-position: center;">
                         <button class="btn btn-primary" type="submit">Save</button>
                     </form>
                 </ul>
@@ -60,7 +61,16 @@
              --}}
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function previewImage() {
+            const imgPreview = document.querySelector('#img-preview');
+            const file = document.querySelector('#image-preview').files[0];
+            imgPreview.style.display = 'block';
+            imgPreview.src = URL.createObjectURL(file);
+        }
+    </script>
 </body>
 
 </html>
