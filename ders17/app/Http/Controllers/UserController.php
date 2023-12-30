@@ -18,14 +18,12 @@ class UserController extends Controller
     public function authenticate(Request $request){
         if(Auth::check()){
             // kullanıcı zaten giriş yapmışsa yönlendir.
-            return redirect()->route('user/dashboard');
+            return redirect()->route('dashboard');
         }
-
         $credentials = $request->only('email', 'password');
-
         if(Auth::attempt($credentials)){
             // Doğrulama ve oturum açma başarılı ise
-            return redirect()->route('user/dashboard');
+            return redirect()->route('dashboard');
         } else {
             // Oturum açma başarısız ise
             return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış');
@@ -34,7 +32,6 @@ class UserController extends Controller
 
     public function logout(){
         // Kullanıcının oturumunu sonlandırır.
-        
         Auth::logout();
         return redirect()->route('login');
     }
