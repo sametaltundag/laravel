@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <a href="{{route('test.index')}}" class="btn btn-sm btn-primary">Kayıt Listesi</a>
 
-    <form action="{{route('test-store')}}" method="POST">
+    <form action="{{route('test.store')}}" method="POST">
         @csrf
         <div class="form-group">
             <label for="name">Başlık</label>
@@ -16,8 +16,8 @@
             <input type="text" name="description" id="description" class="form-control">
         </div>
 
-        <div class="form-group">
-            <button type="submit">Oluştur</button>
+        <div class="form-group mt-2">
+            <button type="submit" class="btn btn-sm btn-success">Oluştur</button>
         </div>
 
     </form>

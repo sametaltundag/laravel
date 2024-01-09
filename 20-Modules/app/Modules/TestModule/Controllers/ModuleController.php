@@ -13,5 +13,18 @@ class ModuleController extends Controller
         return view('TestModule::backend.index',compact('tests'));
     }
 
-    
+    public function create(){
+        return view('TestModule::backend.create');
+    }
+
+    public function store(Request $request){
+
+        $data = $request->validate([
+           'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        Test::query()->create($data);
+        return redirect()->route('test.index')->with('success', 'Kayıt başarılı');
+    }
 }
