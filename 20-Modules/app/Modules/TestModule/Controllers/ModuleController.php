@@ -27,4 +27,28 @@ class ModuleController extends Controller
         Test::query()->create($data);
         return redirect()->route('test.index')->with('success', 'Kayıt başarılı');
     }
+
+    public function edit($id){
+        $test = Test::query()->find($id);
+        return view('TestModule::backend.edit',compact('test'));
+    }
+
+    public function update(Request $request, $id){
+
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $test = Test::query()->find($id);
+        $test->update($data);
+        return redirect()->route('test.index')->with('success', 'Kayıt başarılı');
+    }
+
+    public function destroy($id){
+
+        $test = Test::query()->find($id);
+        $test->delete();
+        return redirect()->route('test.index')->with('success', 'Kayıt silindi');
+    }
 }

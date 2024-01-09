@@ -12,17 +12,19 @@
                 <th>İşlemler</th>
             </tr>
         </thead>
-
         <tbody>
             @foreach ($tests as $test)
             <tr>
                 <td>{{$test->name }}</td></td>
                 <td>{{$test->description }}</td>
-                <td>
-                    <a href="" class="btn btn-sm btn-primary">Düzenle</a>
-                    <a href="" class="btn btn-sm btn-danger">Sil</a>
+                <td class="d-flex">
+                    <a href="{{route('test.edit', $test->id)}}" class="btn btn-sm btn-primary mx-2">Düzenle</a>
+                    <form action="{{route('test.destroy', $test->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+                    </form>
                 </td>
-                <td></td>
             </tr>
             @endforeach
 
